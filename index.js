@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import routes from './routes/routes.js';
 import path from 'path';
 import dotenv from 'dotenv';
+const __dirname = path.resolve();
 
 /**
  * Faz a leitura do arquivo
@@ -17,24 +18,22 @@ app.use(express.json());
 /**
  * Vinculando o React ao app
  */
-//app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 /**
  * Rota raiz
  */
-/*
 app.get('/api/', (_, response) => {
   response.send({
     message:
       'Bem-vindo à API de lançamentos. Acesse /transaction e siga as orientações',
   });
 });
-*/
 
 /**
  * Rotas principais do app
  */
-app.use('/api/', routes.app);
+app.use('/api/transaction', routes.app);
 
 /**
  * Conexão ao Banco de Dados

@@ -11,3 +11,94 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.font-normal {
+  font-size: 1.1rem;
+}
+
+.font-medium {
+  font-size: 1.4rem;
+}
+
+.font-large {
+  font-size: 1.8rem;
+}
+
+.font-xlarge {
+  font-size: 2rem;
+}
+
+header .navbar-home {
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  width: 100%;
+  justify-content: center;
+}
+
+header .navbar-home .content-header {
+  display: flex;
+  flex-direction: column;
+  line-height: normal;
+  justify-content: center;
+  align-items: center;
+}
+
+head nav {
+  display: flex;
+}
+
+.container-main {
+  margin: 0 auto;
+  width: 100%;
+  align-content: center;
+}
+
+@media (max-width: 800px) {
+  header .navbar-home {
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  header .content-header span {
+    display: none;
+    align-items: center;
+  }
+
+  .container-main {
+    margin: 0 auto;
+    width: 100%;
+    align-content: center;
+  }
+
+  .container-main .row {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .container-main .row .col.s6 {
+    width: 100%;
+  }
+}
+
+@media (max-width: 400px) {
+  header .navbar-home {
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  header .navbar-home strong {
+    text-align: center;
+    font-size: 1.8rem;
+  }
+  header .navbar-home span {
+    text-align: center;
+    font-size: 1.8rem;
+  }
+}

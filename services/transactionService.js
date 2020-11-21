@@ -21,7 +21,7 @@ const findAll = async (req, res) => {
     const description = req.query.description;
 
     if (!period) {
-      return res.status(404).send({ message: VALIDATION_YEAR_MONTH });
+      return res.status(400).send({ message: VALIDATION_YEAR_MONTH });
     }
     //condicao para o filtro no findAll
     var condition = description
@@ -66,16 +66,16 @@ const totalYearMonth = async (req, res) => {
     const description = req.query.description;
 
     if (!period) {
-      return res.status(404).send({ message: VALIDATION_YEAR_MONTH });
+      return res.status(400).send({ message: VALIDATION_YEAR_MONTH });
     }
 
     //condicao para o filtro no findAll
-    var condition = description
+    /*var condition = description
       ? {
           yearMonth: period,
           description: { $regex: new RegExp(description), $options: 'i' },
         }
-      : { yearMonth: period };
+      : { yearMonth: period };*/
 
     const transactions = await TransactionModel.aggregate([
       {
@@ -94,21 +94,12 @@ const totalYearMonth = async (req, res) => {
       },
       { $sort: { _id: 1 } },
     ]);
+
     res.status(200).send(transactions);
   } catch (error) {
     res
       .status(500)
       .send({ message: error.message || 'Erro ao listar todos os documentos' });
-  }
-};
-
-const findOne = async (req, res) => {
-  try {
-    const id = req.params.id;
-    const data = await TransactionModel.findById(id);
-    res.status(200).send(data);
-  } catch (error) {
-    res.status(500).send({ message: 'Erro ao buscar a transaction id: ' + id });
   }
 };
 
@@ -118,7 +109,7 @@ const objectStructure = (objectReq) => {
     return null;
   }
   const dateResult = yearMonthDay.split('-');
-  //console.log(dateResult);
+
   const objectData = {
     description,
     value,
@@ -136,12 +127,12 @@ const objectStructure = (objectReq) => {
 const insert = async (req, res) => {
   const data = objectStructure(req.body);
   if (!data) {
-    return res.status(404).send({ message: VALIDATION_FIELDS });
+    return res.status(400).send({ message: VALIDATION_FIELDS });
   }
 
   if (data.type === '-' || data.type === '+') {
   } else {
-    return res.status(404).send({ message: VALIDATION_FIELD_TYPE });
+    return res.status(400).send({ message: VALIDATION_FIELD_TYPE });
   }
   const newTransaction = new TransactionModel(data);
   try {
@@ -155,13 +146,14 @@ const insert = async (req, res) => {
 const update = async (req, res) => {
   const id = req.params.id;
   const updateData = objectStructure(req.body);
+
   if (!updateData) {
-    return res.status(404).send({ message: VALIDATION_FIELDS });
+    return res.status(400).send({ message: VALIDATION_FIELDS });
   }
 
   if (updateData.type === '-' || updateData.type === '+') {
   } else {
-    return res.status(404).send({ message: VALIDATION_FIELD_TYPE });
+    return res.status(400).send({ message: VALIDATION_FIELD_TYPE });
   }
   try {
     const query = { _id: id };
@@ -189,6 +181,16 @@ const remove = async (req, res) => {
     res.status(200).json({ message: 'Dados deletado!' });
   } catch (error) {
     res.status(500).json({ error: error.message });
+  }
+};
+
+const findOne = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const data = await TransactionModel.findById(id);
+    res.status(200).send(data);
+  } catch (error) {
+    res.status(500).send({ message: 'Erro ao buscar a transaction id: ' + id });
   }
 };
 

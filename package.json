@@ -1,26 +1,38 @@
 {
-  "name": "bootcamp-full-stack-desafio-final",
+  "name": "react-client",
   "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
+  "private": true,
+  "proxy": "http://localhost:5001",
   "dependencies": {
-    "cors": "2.8.5",
-    "dotenv": "8.2.0",
-    "express": "4.17.1",
-    "mongodb": "3.5.9",
-    "mongoose": "5.9.19"
-  },
-  "devDependencies": {
-    "nodemon": "2.0.4"
+    "@testing-library/jest-dom": "4.2.4",
+    "@testing-library/react": "9.3.2",
+    "@testing-library/user-event": "7.1.2",
+    "axios": "0.19.2",
+    "materialize-css": "1.0.0",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-google-charts": "3.0.15",
+    "react-modal": "3.11.2",
+    "react-scripts": "3.4.1"
   },
   "scripts": {
     "server": "nodemon index.js",
     "start": "node index.js",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
-  "nodemonConfig": {
-    "ignore": [
-      "client/"
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
     ]
   },
   "type": "module"
