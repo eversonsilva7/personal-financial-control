@@ -12,7 +12,11 @@ const __dirname = path.resolve();
  */
 dotenv.config();
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: 'https://my-financial-control.herokuapp.com',
+  })
+);
 app.use(express.json());
 
 /**
