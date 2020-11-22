@@ -1,7 +1,10 @@
 import axios from 'axios';
 
 const url = axios.create({
-  baseURL: 'api/transaction',
+  baseURL: REACT_APP_URL_API + '/api/transaction',
+  headers: {
+    'Content-type': 'application/json',
+  },
 });
 
 async function getPeriodTransaction(period) {
