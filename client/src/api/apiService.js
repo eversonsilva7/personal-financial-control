@@ -1,11 +1,16 @@
 import axios from 'axios';
 
+const url_api = 'https://my-financial-control.herokuapp.com/';
+//const url_api = 'http://localhost:3001/'
+
 const url = axios.create({
-  baseURL: REACT_APP_URL_API + '/api/transaction',
+  baseURL: url_api + '/api/transaction',
   headers: {
     'Content-type': 'application/json',
   },
 });
+
+console.log(process.env.REACT_APP_URL_API);
 
 async function getPeriodTransaction(period) {
   const response = await url.get(`?period=${period}`);
