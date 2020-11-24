@@ -119,7 +119,7 @@ export default function App() {
                   Controle Financeiro Pessoal
                 </strong>
                 <span className="font-medium">
-                  Bootcamp Full Stack - Desafio Final
+                  Bootcamp Full Stack - Desafio Final (Everson)
                 </span>
               </div>
             </div>
